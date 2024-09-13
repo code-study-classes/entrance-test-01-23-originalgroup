@@ -1,1 +1,2 @@
-Номер; Категория; Количество мест; Статус;
+id;name;category;beds;status;hotel-id
+1;ass prezidento;3;4;free;1

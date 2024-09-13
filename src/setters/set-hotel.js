@@ -4,8 +4,11 @@ import readlineSync from 'readline-sync';
 import reader from '../file-reader.js';
 import setRegion from './set-region.js';
 
-const setHotel = () => {
-    const newHotel = readlineSync.question('New hotel: ').toLowerCase().trim();
+const setHotel = (name = '') => {
+    let newHotel
+    if (name === '') {
+        newHotel = readlineSync.question('New hotel: ').toLowerCase().trim();
+    } else newHotel = name;
     const id = getId('data/hotels.csv');
     const regionToAdd = readlineSync.question('Region: ').toLowerCase().trim();
     const regions = reader('data/regions.csv');
@@ -29,7 +32,7 @@ const setHotel = () => {
         }
     }
     updater('data/hotels.csv', `\n${id};${newHotel};${regionId}`)
-    return true; 
+    return id; 
 };
 
-setHotel();
+export default setHotel;
