@@ -7,12 +7,9 @@ import setHotel from './set-hotel.js';
 const setRoom = () => {
     const id = getId('data/rooms.csv');
     const name = readlineSync.question('New name: ').toLowerCase().trim();
-    const category = readlineSync.question('Choose category:\n1 | Стандарт\n2 | Люкс\n3 | Апартаменты\n').toLowerCase().trim();
-    if (category > 3 || category < 1) {
-        console.log('Wrong Category');
-        return false;
-    }
-    const beds = category > 2 ? 4 : 2;
+    const categories = ['Стандарт', 'Люкс', 'Апартаменты'];
+    const category = readlineSync.keyInSelect(categories, 'Choose category:');
+    const beds = category + 1 > 2 ? 4 : 2;
     const status = 'free';
     const hotels = reader('data/hotels.csv');
     const hotelToAdd = readlineSync.question('Hotel: ').toLowerCase().trim();
@@ -39,4 +36,4 @@ const setRoom = () => {
     return true; 
 };
 
-setRoom();
+setRoom(); 
